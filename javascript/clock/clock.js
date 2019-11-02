@@ -1,8 +1,3 @@
-//
-// This is only a SKELETON file for the 'Clock' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class Clock {
   constructor(hours, minutes = 0) {
     this.hours = hours;
@@ -10,38 +5,40 @@ export class Clock {
   }
 
   toString() {
-    this.rollOverMinutes();
-    this.rollOverHours();
+    this.rollOverPositive();
+    this.rollOverNegative();
 
     return `${this.timePadding(this.hours)}:${this.timePadding(this.minutes)}`;
   }
 
-  plus() {
-    throw new Error('Remove this statement and implement this function');
+  plus(int) {
+    this.minutes += int;
+    return this.toString();
   }
 
-  minus() {
-    throw new Error('Remove this statement and implement this function');
+  minus(int) {
+    this.minutes -= int;
+    return this.toString();
   }
 
-  equals() {
-    throw new Error('Remove this statement and implement this function');
+  equals(object) {
+    return this.toString() === object.toString();
   }
 
-  rollOverHours() {
+  rollOverNegative() {
     if (this.minutes < 0) {
       this.hours = (24 + this.hours + Math.floor(this.minutes / 60)) % 24;
       this.minutes = 60 + (this.minutes % 60);
     }
 
     if (this.hours < 0) {
-      this.hours = Math.abs(24 + (this.hours % 24));
+      return this.hours = Math.abs(24 + (this.hours % 24));
     } else {      
-      this.hours = this.hours % 24;
+      return this.hours = this.hours % 24;
     } 
   }
 
-  rollOverMinutes() {
+  rollOverPositive() {
     if (this.minutes >= 60) {
       if (this.minutes % 60 === 0) {
         this.hours += this.minutes / 60;
