@@ -29,20 +29,19 @@ export class Clock {
   }
 
   rollOverHours() {
+    if (this.minutes < 0) {
+      this.hours = (24 + this.hours + Math.floor(this.minutes / 60)) % 24;
+      this.minutes = 60 + (this.minutes % 60);
+    }
+
     if (this.hours < 0) {
       this.hours = Math.abs(24 + (this.hours % 24));
     } else {      
       this.hours = this.hours % 24;
     } 
-
-    if (this.minutes < 0) {
-      this.minutes = (this.hours * 60) + (this.minutes % 60)
-      // this.hours = 24 + ((Math.ceil(this.hours/60)) % 24);
-    }
   }
 
   rollOverMinutes() {
-    if (this.minutes < 0) return;
     if (this.minutes >= 60) {
       if (this.minutes % 60 === 0) {
         this.hours += this.minutes / 60;
