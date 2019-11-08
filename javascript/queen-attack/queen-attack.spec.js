@@ -7,13 +7,13 @@ describe('Queens', () => {
     expect(queens.black).toEqual([7, 3]);
   });
 
-  xtest('initialized with specific placement', () => {
+  test('initialized with specific placement', () => {
     const queens = new QueenAttack({ white: [3, 7], black: [6, 1] });
     expect(queens.white).toEqual([3, 7]);
     expect(queens.black).toEqual([6, 1]);
   });
 
-  xtest('cannot occupy the same space', () => {
+  test('cannot occupy the same space', () => {
     const positioning = { white: [2, 4], black: [2, 4] };
     const expectedError = 'Queens cannot share the same space';
     expect(() => new QueenAttack(positioning)).toThrow(expectedError);
