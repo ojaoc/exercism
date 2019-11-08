@@ -3,7 +3,7 @@
 // convenience to get you started writing code faster.
 //
 
-class QueenAttack {
+export class QueenAttack {
     constructor({ white, black } = { white: [0, 3], black: [7, 3] }) {
         if (this.isNotEquivalent(white, black)) 
         throw new Error("Queens cannot share the same space");
@@ -17,17 +17,17 @@ class QueenAttack {
         let boardSpaces = '';
         let rowCount = 0;
 
-        let whiteRow = this.white[0];
-        let blackRow = this.black[0];
-        let whiteColumn = this.white[1];
-        let blackColumn = this.black[1];
+        const WHITE_ROW = this.white[0];
+        const BLACK_ROW = this.black[0];
+        const WHITE_COLUMN = this.white[1];
+        const BLACK_COLUMN = this.black[1];
         
         for (let i = 0; i < 8; i++) {
             while (rowCount < 8) {
-                if (whiteRow === i && whiteColumn === rowCount) {
+                if (WHITE_ROW === i && WHITE_COLUMN === rowCount) {
                     boardSpaces += " W"; 
                     rowCount++;
-                } else if (blackRow === i && blackColumn === rowCount) {
+                } else if (BLACK_ROW === i && BLACK_COLUMN === rowCount) {
                     boardSpaces += " B";
                     rowCount++;
                 } else {
@@ -39,11 +39,13 @@ class QueenAttack {
             boardSpaces = '';
             rowCount = 0;
         }
-        console.log(board);
+        board[board.length-1] += '\n';
+
+        return board.join('\n');
     }
 
     canAttack() {
-        throw new Error("Remove this statement and implement this function");
+        
     }
 
     isNotEquivalent(a, b) {
@@ -65,12 +67,11 @@ class QueenAttack {
                 return false;
             }
         }
-    
         // If we made it this far, objects
         // are considered equivalent
         return true;
     }
 }
 
-const queens = new QueenAttack();
-queens.toString();
+// const queens = new QueenAttack();
+// queens.toString();
