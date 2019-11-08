@@ -39,7 +39,6 @@ class QueenAttack {
             boardSpaces = '';
             rowCount = 0;
         }
-        board[whiteRow] = 
         console.log(board);
     }
 
