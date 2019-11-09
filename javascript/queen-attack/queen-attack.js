@@ -1,33 +1,28 @@
-//
-// This is only a SKELETON file for the 'Queen Attack' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class QueenAttack {
     constructor({ white, black } = { white: [0, 3], black: [7, 3] }) {
-        if (this.isNotEquivalent(white, black)) 
+        if (this.isEquivalent(white, black)) 
         throw new Error("Queens cannot share the same space");
 
         this.white = white;
         this.black = black;
+
+        this.whiteRow = this.white[0];
+        this.blackRow = this.black[0];
+        this.whiteColumn = this.white[1];
+        this.blackColumn = this.black[1];
     }
 
     toString() {
         let board = [];
         let boardSpaces = '';
         let rowCount = 0;
-
-        const WHITE_ROW = this.white[0];
-        const BLACK_ROW = this.black[0];
-        const WHITE_COLUMN = this.white[1];
-        const BLACK_COLUMN = this.black[1];
         
         for (let i = 0; i < 8; i++) {
             while (rowCount < 8) {
-                if (WHITE_ROW === i && WHITE_COLUMN === rowCount) {
+                if (this.whiteRow === i && this.whiteColumn === rowCount) {
                     boardSpaces += " W"; 
                     rowCount++;
-                } else if (BLACK_ROW === i && BLACK_COLUMN === rowCount) {
+                } else if (this.blackRow === i && this.blackColumn === rowCount) {
                     boardSpaces += " B";
                     rowCount++;
                 } else {
@@ -45,10 +40,23 @@ export class QueenAttack {
     }
 
     canAttack() {
-        
+        const SHARE_DIAGONAL = () => {
+            if (Math.abs(this.whiteRow - this.blackRow) === 
+            Math.abs(this.whiteColumn - this.blackColumn)) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
+        if (this.whiteRow === this.blackRow || 
+            this.whiteColumn === this.blackColumn) {
+            return true;
+        } else {
+            return SHARE_DIAGONAL();
+        }
     }
 
-    isNotEquivalent(a, b) {
+    isEquivalent(a, b) {
         // Create arrays of property names
         const A_PROPS = Object.getOwnPropertyNames(a);
         const B_PROPS = Object.getOwnPropertyNames(b);
@@ -57,7 +65,6 @@ export class QueenAttack {
         if (A_PROPS.length !== B_PROPS.length) {
             return false;
         }
-    
         for (let i = 0; i < A_PROPS.length; i++) {
             let propName = A_PROPS[i];
     
@@ -72,6 +79,3 @@ export class QueenAttack {
         return true;
     }
 }
-
-// const queens = new QueenAttack();
-// queens.toString();
