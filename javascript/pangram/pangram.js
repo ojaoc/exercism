@@ -1,8 +1,16 @@
-//
-// This is only a SKELETON file for the 'Pangram' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+export const isPangram = (sentence) => {
+  const SPLIT_CHAR = sentence
+    .toLowerCase()
+    .match(/[a-z]/g);
 
-export const isPangram = () => {
-  throw new Error("Remove this statement and implement this function");
+  if (!SPLIT_CHAR) return false;
+
+  const COUNT = SPLIT_CHAR.reduce((obj, char) => {
+    if (!obj[char]) {
+      obj[char] = true;
+    }
+    return obj;
+  }, {});
+
+  return Object.keys(COUNT).length === 26 ? true : false;
 };
