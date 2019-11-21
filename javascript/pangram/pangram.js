@@ -5,12 +5,20 @@ export const isPangram = (sentence) => {
 
   if (!SPLIT_CHAR) return false;
 
-  const COUNT = SPLIT_CHAR.reduce((obj, char) => {
-    if (!obj[char]) {
-      obj[char] = true;
-    }
-    return obj;
-  }, {});
+  const COUNT = new Set();
 
-  return Object.keys(COUNT).length === 26 ? true : false;
+  SPLIT_CHAR.forEach(char => {
+    return COUNT.add(char);
+  });
+
+  // This works as well:
+
+  // const COUNT = SPLIT_CHAR.reduce((obj, char) => {
+  //   if (!obj[char]) {
+  //     obj[char] = true;
+  //   }
+  //   return obj;
+  // }, {});
+
+  return COUNT.size === 26 ? true : false;
 };
