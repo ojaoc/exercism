@@ -1,23 +1,29 @@
 class Matrix {
-  constructor(matrix) {
-    this.matrix = matrix
-      .split("\n");
-      .map(row => {
-        for (let i = 0; i < row.length; i++) {
-          if (parseInt(row.charAt(i)))
-          parseInt(row.charAt(i));
-        }
-      })
+  constructor(string) {
+    this.matrix = string
+      .split("\n"); // Seperate elements by row 
+    this.row = [];
+    let columns = [];
+    /* The code below will turn each string number into 
+    a real number. Now, we have an array of rows, each 
+    containing the corresponding integers */
+    for (let i = 0; i < this.matrix.length; i++) {
+      this.row.push(this.matrix[i]
+        .match(/\d+/g)
+        .map(item => {
+          return Number(item);
+        }));
+    }
   }
 
   get rows() {
-    return this.matrix;
+    return this.row;
   }
 
   get columns() {
-    throw new Error("Remove this statement and implement this function");
+    // for (let i = 0; i < this)
   }
 }
 
-let matrix = new Matrix('1 2\n3 4');
-console.log(matrix.rows);
+let matrix = new Matrix('1 3 4 3\n3 2 1 7');
+console.log(matrix.rows[2]);
