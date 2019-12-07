@@ -2,14 +2,28 @@ export const hey = (message) => {
   message = message.trim();
   if (message.length < 1) return 'Fine. Be that way!'; // Saying nothing
   const IS_QUESTION = message.slice(-1) === '?';
-  const IS_YELLING = message
-      .split('')
-      .every(item => {
-        return item === item.toUpperCase();
-      });
-  if (IS_QUESTION) {
-    return IS_YELLING ? 'Calm down, I know what I\'m doing!' : 'Sure.';
-  } else {
-    return IS_YELLING ? 'Whoa, chill out!' : 'Whatever.';
+
+  message = message.split('');
+  let isYelling = false;
+  for (let i = 0; i < message.length; i++) {
+
+    if (/[A-Z]/.test(message[i]) && /[A-Z]/.test(message[i+1])) {
+
+      if (message[i] + message[i+1] === 'OK') {
+        continue;
+      } else if (message[i] + message[i+1] + message[i+2] === 'DMV') {
+        break;
+      }
+
+      console.log(message[i]);
+      isYelling = true;
+      break;
+    } 
   }
+
+  if (IS_QUESTION) {
+    return isYelling ? 'Calm down, I know what I\'m doing!' : 'Sure.';
+  }
+
+  return isYelling ? 'Whoa, chill out!' : 'Whatever.';
 };
