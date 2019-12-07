@@ -1,6 +1,6 @@
 export const age = (planet, ageInSeconds) => {
   const EARTH_ORBITAL_SECONDS = 31557600;
-  const ORBITAL_PERIOD = {
+  const ORBITAL_YEAR = {
     mercury: 0.2408467,
 
     venus: 0.61519726,
@@ -18,7 +18,7 @@ export const age = (planet, ageInSeconds) => {
     neptune: 164.79132
   }
 
-  const RESULT = ageInSeconds / (ORBITAL_PERIOD[planet] * EARTH_ORBITAL_SECONDS);
+  const RESULT = ageInSeconds / (ORBITAL_YEAR[planet] * EARTH_ORBITAL_SECONDS);
 
   return Math.round(RESULT * 100) / 100;
   // This will return the age in Earth years, rounded to two decimal places. 
