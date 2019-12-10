@@ -5,16 +5,16 @@ const isQuestion = message => message.slice(-1) === '?';
 const isYelling = message => {
 
   message.split('');
-  
-  for (let i = 0; i < message.length; i++) {
-  
-    if (/[A-Z]/.test(message[i]) && /[A-Z]/.test(message[i+1])) {
 
-      if (message[i] + message[i+1] === 'OK') {
+  for (let i = 0; i < message.length; i++) {
+
+    if (/[A-Z]/.test(message[i]) && /[A-Z]/.test(message[i + 1])) {
+
+      if (message[i] + message[i + 1] === 'OK') {
 
         continue;
 
-      } else if (message[i] + message[i+1] + message[i+2] === 'DMV') {
+      } else if (message[i] + message[i + 1] + message[i + 2] === 'DMV') {
 
         return false;
 
@@ -22,15 +22,15 @@ const isYelling = message => {
 
       return true;
 
-    } 
-  }  
+    }
+  }
 
   return false;
 
 }
 
 export const hey = (message) => {
-  
+
   message = message.trim();
 
   if (isSilence(message)) return 'Fine. Be that way!'; // Saying nothing
