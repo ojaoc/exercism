@@ -4,32 +4,27 @@ const isQuestion = message => message.slice(-1) === '?';
 
 const isYelling = message => {
 
-  message.split('');
+  message = message
+    .split('')
+    .filter(item => {
 
-  for (let i = 0; i < message.length; i++) {
+      return /[a-zA-Z]/.test(item);
 
-    if (/[A-Z]/.test(message[i]) && /[A-Z]/.test(message[i + 1])) {
+    });
 
-      if (message[i] + message[i + 1] === 'OK') {
+  if (message.length === 0) {
 
-        continue;
+    return false;
 
-      } else if (message[i] + message[i + 1] + message[i + 2] === 'DMV') {
+  } else {
 
-        return false;
+    return message.every(item => item.toUpperCase() === item);
 
-      }
-
-      return true;
-
-    }
   }
-
-  return false;
 
 }
 
-export const hey = (message) => {
+export const hey = message => {
 
   message = message.trim();
 
