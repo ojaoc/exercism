@@ -1,42 +1,12 @@
-export class LinkedList {
+export class LinkedList extends Array {
 
-  constructor() {
+  delete(value) {
 
-    this.arr = [];
+    const index = this.indexOf(value); 
+    
+    if (index !== -1) {
 
-  }
-
-  push(val) {
-
-    this.arr.push(val);
-    return val;
-
-  }
-
-  pop() {
-
-    return this.arr.pop();
-
-  }
-
-  shift() {
-
-    return this.arr.shift();
-
-  }
-
-  unshift(val) {
-
-    this.arr.unshift(val);
-    return val;
-
-  }
-
-  delete(val) {
-
-    if (this.arr.indexOf(val) !== -1) {
-
-      return this.arr.splice(this.arr.indexOf(val), 1);
+      return this.splice(index, 1);
 
     }
 
@@ -44,7 +14,7 @@ export class LinkedList {
 
   count() {
 
-    return this.arr.length;
+    return this.length;
 
   }
 
