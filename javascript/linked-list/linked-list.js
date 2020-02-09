@@ -19,3 +19,7 @@ export class LinkedList extends Array {
   }
 
 }
+
+export class Node {
+    
+}
